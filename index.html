@@ -1,0 +1,238 @@
+<!doctype html>
+	<html lang="ca">
+		<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="shortcut icon" type="image/x-icon" href="./media/favicon.ico">
+		<link rel="icon" type="image/png" href="./media/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="./media/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="./media/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="./media/favicon-192x192.png" sizes="192x192">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="./assets/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+		<!-- Font Awesome CSS -->
+		<link rel="stylesheet" href="./assets/fontawesome-5.15.4-web/css/all.min.css">
+		<!-- Custom -->
+		<style>
+			h1 {
+				clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+			}
+			.netejar {
+				width:50%;
+				margin:0 auto;
+				clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);
+			}
+			input[type="number"] {
+				-webkit-appearance: textfield;
+				-moz-appearance: textfield;
+				appearance: textfield;
+				width:4em !important;
+				text-align:center;
+				display:inline-block;
+			}
+			input[type=number]::-webkit-inner-spin-button, 
+			input[type=number]::-webkit-outer-spin-button { 
+				-webkit-appearance: none;
+			}
+			.daus {
+				border-left-width:4em !important;
+				transform:translateX(-5.25em);
+				z-index:1;
+			}
+			.text-primary {
+				color: #9326ff !important;
+			}
+			.border-primary {
+				border-color: #9326ff !important;
+			}
+			.bg-primary {
+				background-color: #9326ff !important;
+			}
+			.btn-primary {
+				background-color: #9326ff;
+				border-color: #9326ff;
+			}
+			.btn-primary:hover {
+				background-color: #8000ff;
+				border-color: #8000ff;
+			}
+			textarea.form-control {
+				height:10em !important;
+			}
+			@media screen and (max-width:575px){
+				h1 {
+					font-size:1.5rem;
+				}
+				input[type="number"] {
+					width:3em !important;
+				}
+				textarea.form-control {
+					height:5em !important;
+				}
+				.daus {
+					border-left-width:0 !important;
+					transform:translateX(0);
+				}
+			}
+		</style>
+		<title>Star Wars Roll20 Generador</title>
+	</head>
+	<body class="m-3">
+		<main class="container-fluid">
+			<h1 class="text-center bg-dark text-white mx-5 mb-0 px-3 px-sm-5 py-2">
+				<span class="d-none d-sm-inline">
+					Generador de tirades per 
+					<span lang="en">Roll20</span> 
+				</span>
+				<i class="fas fa-jedi fa-2x text-white d-sm-none"></i>
+			</h1>
+			<div class="row border-dark border rounded bg-secondary ">
+				<div class="col-12 col-sm-6 order-1 order-sm-2 pt-4 text-center text-sm-end d-none d-sm-block">
+					<i class="fas fa-jedi fa-3x text-white"></i>
+					<i class="fad fa-swords-laser fa-3x text-white"></i>
+					<i class="fab fa-sith fa-3x text-white"></i>
+				</div>
+				<div class="col-12 col-sm-6 order-2 order-sm-1 pt-2 text-center text-sm-start text-nowrap">
+					<span class="fa-stack fa-2x text-light position-relative d-none d-sm-inline-block" style="z-index:2;">
+						<i class="fas fa-circle fa-stack-2x"></i>
+						<i class="fal fa-dice-d12 fa-stack-1x text-dark"></i>
+					</span><!-- /.fa-stack -->
+					<div class="daus bg-light btn-group px-sm-3 py-1 rounded  position-relative border border-light" role="group">
+						<button onclick="this.parentNode.querySelector('input[type=number]').stepDown(); generar();" class="btn btn-light"><i class="fas fa-minus"></i></button>
+						<input min="0" max="5" range="1" name="Blanc" id="Blanc" value="0" type="number" class="dau form-control border-light">
+						<button onclick="this.parentNode.querySelector('input[type=number]').stepUp(); generar();" class="btn btn-light"><i class="fas fa-plus"></i></button>
+					</div><!-- /.daus -->
+					<hr>
+				</div><!-- /.col -->
+				<div class="col-6 col-md-4 col-lg-3 order-3 text-center text-sm-start text-nowrap">
+					<span class="fa-stack fa-2x text-light position-relative d-none d-sm-inline-block" style="z-index:2;">
+						<i class="fas fa-circle fa-stack-2x"></i>
+						<i class="fas fa-dice-d12 fa-stack-1x text-warning"></i>
+					</span><!-- /.fa-stack -->
+					<div class="daus bg-warning btn-group px-sm-3 py-1 rounded  position-relative border border-warning" role="group">
+						<button onclick="this.parentNode.querySelector('input[type=number]').stepDown(); generar();" class="btn btn-warning"><i class="fas fa-minus"></i></button>
+						<input min="0" max="5" range="1" name="Groc" id="Groc" value="0" type="number" class="dau form-control border-warning">
+						<button onclick="this.parentNode.querySelector('input[type=number]').stepUp(); generar();" class="btn btn-warning"><i class="fas fa-plus"></i></button>
+					</div><!-- /.daus -->
+					<hr>
+					<span class="fa-stack fa-2x text-light position-relative d-none d-sm-inline-block" style="z-index:2;">
+						<i class="fas fa-circle fa-stack-2x"></i>
+						<i class="fas fa-dice-d8 fa-stack-1x text-success"></i>
+					</span><!-- /.fa-stack -->
+					<div class="daus bg-success btn-group px-sm-3 py-1 rounded  position-relative border border-success" role="group">
+						<button onclick="this.parentNode.querySelector('input[type=number]').stepDown(); generar();" class="btn btn-success"><i class="fas fa-minus"></i></button>
+						<input min="0" max="5" range="1" name="Verd" id="Verd" value="0" type="number" class="dau form-control border-success">
+						<button onclick="this.parentNode.querySelector('input[type=number]').stepUp(); generar();" class="btn btn-success"><i class="fas fa-plus"></i></button>
+					</div><!-- /.daus -->
+					<hr>
+					<span class="fa-stack fa-2x text-light position-relative d-none d-sm-inline-block" style="z-index:2;">
+						<i class="fas fa-circle fa-stack-2x"></i>
+						<i class="fas fa-dice-d6 fa-stack-1x text-info"></i>
+					</span><!-- /.fa-stack -->
+					<div class="daus bg-info btn-group px-sm-3 py-1 rounded  position-relative border border-info" role="group">
+						<button onclick="this.parentNode.querySelector('input[type=number]').stepDown(); generar();" class="btn btn-info"><i class="fas fa-minus"></i></button>
+						<input min="0" max="5" range="1" name="Blau" id="Blau" value="0" type="number" class="dau form-control border-info">
+						<button onclick="this.parentNode.querySelector('input[type=number]').stepUp(); generar();" class="btn btn-info"><i class="fas fa-plus"></i></button>
+					</div><!-- /.daus -->
+					<hr>
+				</div><!-- /.col -->
+				<div class="col-6 col-md-4 col-lg-3 order-4 text-center text-sm-start text-nowrap">
+					<span class="fa-stack fa-2x text-light position-relative d-none d-sm-inline-block" style="z-index:2;">
+						<i class="fas fa-circle fa-stack-2x"></i>
+						<i class="fas fa-dice-d12 fa-stack-1x text-danger"></i>
+					</span><!-- /.fa-stack -->
+					<div class="daus bg-danger btn-group px-sm-3 py-1 rounded  position-relative border border-danger" role="group">
+						<button onclick="this.parentNode.querySelector('input[type=number]').stepDown(); generar();" class="btn btn-danger"><i class="fas fa-minus"></i></button>
+						<input min="0" max="5" range="1" name="Vermell" id="Vermell" value="0" type="number" class="dau form-control border-danger">
+						<button onclick="this.parentNode.querySelector('input[type=number]').stepUp(); generar();" class="btn btn-danger"><i class="fas fa-plus"></i></button>
+					</div><!-- /.daus -->
+					<hr>
+					<span class="fa-stack fa-2x text-light position-relative d-none d-sm-inline-block" style="z-index:2;">
+						<i class="fas fa-circle fa-stack-2x"></i>
+						<i class="fas fa-dice-d8 fa-stack-1x text-primary"></i>
+					</span><!-- /.fa-stack -->
+					<div class="daus bg-primary btn-group px-sm-3 py-1 rounded  position-relative border border-primary" role="group">
+						<button onclick="this.parentNode.querySelector('input[type=number]').stepDown(); generar();" class="btn btn-primary"><i class="fas fa-minus"></i></button>
+						<input min="0" max="5" range="1" name="Lila" id="Lila" value="0" type="number" class="dau form-control border-primary">
+						<button onclick="this.parentNode.querySelector('input[type=number]').stepUp(); generar();" class="btn btn-primary"><i class="fas fa-plus"></i></button>
+					</div><!-- /.daus -->
+					<hr>
+					<span class="fa-stack fa-2x text-light position-relative d-none d-sm-inline-block" style="z-index:2;">
+						<i class="fas fa-circle fa-stack-2x"></i>
+						<i class="fas fa-dice-d6 fa-stack-1x text-dark"></i>
+					</span><!-- /.fa-stack -->
+					<div class="daus bg-dark btn-group px-sm-3 py-1 rounded  position-relative border border-dark" role="group">
+						<button onclick="this.parentNode.querySelector('input[type=number]').stepDown(); generar();" class="btn btn-dark"><i class="fas fa-minus"></i></button>
+						<input min="0" max="5" range="1" name="Negre" id="Negre" value="0" type="number" class="dau form-control border-dark">
+						<button onclick="this.parentNode.querySelector('input[type=number]').stepUp(); generar();" class="btn btn-dark"><i class="fas fa-plus"></i></button>
+					</div><!-- /.daus -->
+					<hr>
+				</div>
+				<div class="col-12 col-md-4 col-lg-6 text-center order-5">
+					<button class="btn btn-light w-100 border-dark" id="btnGenerar"><i class="fad fa-wand-magic"></i> Generar</button>
+					<textarea class="form-control border-dark text-body" name="sortida" id="sortida" readonly></textarea>
+					<button class="btn btn-light w-100 border-dark" id="btnCopiar"><i class="fad fa-copy "></i> Copiar</button>
+					<span id="retorn" class="text-light"></span>
+					<hr>
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+			<div class="text-center py-2 bg-dark netejar">
+				<button class="btn btn-light border-dark" id="btnNetejar"><i class="fad fa-eraser"></i> Netejar</button>
+			</div>
+		</main>
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="./assets/jquery-3.7.1.min.js"></script>
+		<script src="./assets/bootstrap-5.3.8-dist/js/bootstrap.bundle.min.js"></script>
+		<script>
+			const colors = ['Blanc','Groc','Verd','Blau','Vermell','Lila','Negre'];
+			var tempo;
+			function copiar() {
+				// selecciono el contigut del textarea
+				$('#sortida').select();
+				// copio el contingut seleccionat
+				document.execCommand('copy');
+				// mostro el retorn
+				clearInterval(tempo);
+				$('#retorn').hide();
+				$('#retorn').html('<i class="far fa-clipboard-check"></i> Copiat!');
+				$('#retorn').fadeIn();
+				tempo = setTimeout(function(){
+					$('#retorn').fadeOut(function(){
+						$('#retorn').html('');
+						$('#retorn').show();
+					});
+				},2000);
+			}
+			function generar() {
+				// genero la tirada: /roll (Xt[Verd]+Xt[Groc]+Xt[Lila]+Xt[Vermell]+Xt[Blanc]+Xt[Blau]+Xt[Negre])
+				let temp = [];
+				$.each( colors, function( i, color ) {
+					if ( $('#'+color).val() > 0 ) {
+						temp.push( $('#'+color).val() + "t[" + color + "]" );
+					}
+				});
+				let text = "/roll (";
+				text += temp.join('+');
+				text += ")";
+				$('#sortida').val(text);
+				
+				copiar();
+			}
+			$('#btnGenerar').on('click',function(){
+				generar();
+			});
+			$('#btnCopiar').on('click',function(){
+				copiar();
+			});
+			$('#btnNetejar').on('click',function(){
+				$.each( colors, function( i, color ) {
+					$('#'+color).val(0)
+					$('#sortida').val('');
+				});
+			});
+		</script>
+	</body>
+</html>
